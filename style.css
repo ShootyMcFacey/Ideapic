@@ -73,6 +73,35 @@ body, html {
     box-shadow: inset 0 5px 10px rgba(0,0,0,0.9);
 }
 
+/* Scrolling Banner Styles */
+.scrolling-banner-container {
+    position: absolute;
+    bottom: 50px; /* Position beneath the letterbox */
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 10; /* Above background */
+    background: rgba(0, 0, 0, 0.7); /* Slight dark backing for legibility */
+    padding: 10px 0;
+    border-top: 2px solid #0f0;
+    border-bottom: 2px solid #0f0;
+}
+
+.scrolling-text {
+    display: inline-block;
+    color: #0f0; /* Matrix green to match the theme */
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px #FF00FF, -2px -2px 0px #00FFFF; /* Maintain glitch style */
+    /* Animation: move left infinitely */
+    animation: scrollBanner 15s linear infinite;
+}
+
+@keyframes scrollBanner {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
 /* Alternating Cyan/Magenta animation for border */
 @keyframes borderPulse {
     0%, 49.9% {
