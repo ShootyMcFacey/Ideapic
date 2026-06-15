@@ -1,0 +1,101 @@
+/* Reset and base styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Pitch-black background */
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Press Start 2P', monospace; /* 8-bit, 8x8 pixel font */
+    color: #0f0; /* Bright matrix green by default */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Canvas for the rain background */
+#matrixRain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Behind the content */
+}
+
+/* CRT Scanline effect */
+.crt-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5; /* Above canvas, below or same level as content container to affect the whole screen or just background. We'll put it behind content so content is legible, or above with pointer-events: none */
+    pointer-events: none;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    opacity: 0.8;
+}
+
+/* Central Content Container - Letterbox style */
+.content-container {
+    position: relative;
+    z-index: 10; /* Above the rain and CRT */
+    background-color: rgba(10, 10, 10, 0.95); /* Semi-transparent but very dark background, like metal */
+    padding: 30px 50px 40px; /* Adjust padding for letterbox shape */
+    width: 600px; /* Fixed width for standard letterbox proportions */
+    max-width: 90vw;
+    text-align: center;
+    border-radius: 8px; /* Slightly rounded edges for the physical box */
+
+    /* Vivid, high-contrast border (Cyan and Magenta, Spectrum palette) */
+    border: 4px solid #00FFFF; /* Initial Cyan */
+    box-shadow:
+        0 0 10px #00FFFF,
+        inset 0 0 10px #00FFFF;
+
+    /* Alternating border color animation */
+    animation: borderPulse 1.5s infinite alternate steps(1, end);
+}
+
+/* The actual physical letter opening slot */
+.letter-slot {
+    width: 85%;
+    height: 18px;
+    margin: 25px auto 30px;
+    background-color: #000; /* Dark hole */
+    border: 2px solid #333; /* Dark rim */
+    border-top: 4px solid #111; /* Shadow giving depth */
+    border-radius: 3px;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.9);
+}
+
+/* Alternating Cyan/Magenta animation for border */
+@keyframes borderPulse {
+    0%, 49.9% {
+        border-color: #00FFFF; /* Cyan */
+        box-shadow: 0 0 15px #00FFFF, inset 0 0 15px #00FFFF;
+    }
+    50%, 100% {
+        border-color: #FF00FF; /* Magenta */
+        box-shadow: 0 0 15px #FF00FF, inset 0 0 15px #FF00FF;
+    }
+}
+
+/* Typography styles */
+.content-container h1 {
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    color: #fff; /* High-contrast white for title, looks like a terminal command */
+    text-shadow: 2px 2px 0px #FF00FF, -2px -2px 0px #00FFFF; /* Glitchy text shadow */
+}
+
+.content-container p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    color: #0f0; /* Bright green */
+}
