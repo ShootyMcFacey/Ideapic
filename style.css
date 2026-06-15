@@ -40,14 +40,16 @@ body, html {
     opacity: 0.8;
 }
 
-/* Central Content Container */
+/* Central Content Container - Letterbox style */
 .content-container {
     position: relative;
     z-index: 10; /* Above the rain and CRT */
-    background-color: rgba(0, 0, 0, 0.85); /* Semi-transparent black background */
-    padding: 40px;
-    max-width: 800px;
+    background-color: rgba(10, 10, 10, 0.95); /* Semi-transparent but very dark background, like metal */
+    padding: 30px 50px 40px; /* Adjust padding for letterbox shape */
+    width: 600px; /* Fixed width for standard letterbox proportions */
+    max-width: 90vw;
     text-align: center;
+    border-radius: 8px; /* Slightly rounded edges for the physical box */
 
     /* Vivid, high-contrast border (Cyan and Magenta, Spectrum palette) */
     border: 4px solid #00FFFF; /* Initial Cyan */
@@ -57,6 +59,18 @@ body, html {
 
     /* Alternating border color animation */
     animation: borderPulse 1.5s infinite alternate steps(1, end);
+}
+
+/* The actual physical letter opening slot */
+.letter-slot {
+    width: 85%;
+    height: 18px;
+    margin: 25px auto 30px;
+    background-color: #000; /* Dark hole */
+    border: 2px solid #333; /* Dark rim */
+    border-top: 4px solid #111; /* Shadow giving depth */
+    border-radius: 3px;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.9);
 }
 
 /* Alternating Cyan/Magenta animation for border */
